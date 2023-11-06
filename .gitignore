@@ -1,0 +1,3 @@
+# Project exclude paths
+/T++Portable/Windows_Build/cmake-build-debug/CMakeFiles/
+/T++Portable/Windows_Build/cmake-build-release/CMakeFiles/
