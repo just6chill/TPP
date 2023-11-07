@@ -4,7 +4,6 @@
 #include <sstream>
 #include <ostream>
 #include <fstream>
-#include <limits>
 
 void Help(Message& Message, Bot& Bot);
 int RegSeller(Message& Message, Bot& Bot);
@@ -25,7 +24,7 @@ void tokenize(std::string const &str, const char delim,
     }
 }
 
-int main(int argc, char *argv[]) {
+auto main()-> int {
 
     std::cout << "starting bot" << std::endl;
 
@@ -45,7 +44,7 @@ int main(int argc, char *argv[]) {
         std::cout << "chat id: " << Message.Data.ChatID << std::endl;
 
         std::string input = Message.Data.Text;
-        std::string word = input.substr(0, input.find(" "));
+        std::string word = input.substr(0, input.find(' '));
 
         if (word == "/help") {
             Help(Message, Bot);
@@ -61,8 +60,7 @@ int main(int argc, char *argv[]) {
             Balance(Message, Bot);
         }
 	});
-
-	return 0;
+    
 }
 
 void Help(Message& Message, Bot& Bot) {
@@ -114,7 +112,7 @@ int RegSeller(Message& Message, Bot& Bot) {
     std::string Line;
     while (std::getline(DB, Line))
     {
-        std::string word = Line.substr(0, Line.find(" "));
+        std::string word = Line.substr(0, Line.find(' '));
         if (out[1] == word) {
             Message.TextReply(0, Bot.Token, "Mentioned user is already registered");
             return 1;
@@ -153,7 +151,7 @@ int Withdraw(Message& Message, Bot& Bot) {
     std::string Line;
     std::ofstream DBWrite;
 
-    DBWrite.open("Temp.txt", std::ofstream::app);;
+    DBWrite.open("Temp.txt", std::ofstream::app);
 
     std::string UserName, UserID;
     long long int Money, Gold, Oil, Ore, Uranium, Diamonds;
@@ -164,7 +162,7 @@ int Withdraw(Message& Message, Bot& Bot) {
     bool UserFlag = false;
     bool PoorFlag = false;
     while (std::getline(DBRead, Line)) {
-        if (Line.substr(0, Line.find(" ")) == User) {
+        if (Line.substr(0, Line.find(' ')) == User) {
             long long int Amount;
             try {
                 //shits not workin
@@ -274,7 +272,7 @@ int Deposit(Message& Message, Bot& Bot) {
 
     bool UserFlag = false;
     while (std::getline(DBRead, Line)) {
-        if (Line.substr(0, Line.find(" ")) == User) {
+        if (Line.substr(0, Line.find(' ')) == User) {
             long long int Amount;
             try {
                 //shits not workin
@@ -349,7 +347,7 @@ int Balance(Message& Message, Bot& Bot) {
     std::string UserName, UserID;
     long long int Money, Gold, Oil, Ore, Uranium, Diamonds;
     while (std::getline(DB, Line)) {
-        if (Line.substr(0, Line.find(" ")) == out[1]) {
+        if (Line.substr(0, Line.find(' ')) == out[1]) {
             std::istringstream iss(Line);
             if (!(iss >> UserName >> UserID >> Money >> Gold >> Oil >> Ore >> Uranium >> Diamonds)) { break; }
         }

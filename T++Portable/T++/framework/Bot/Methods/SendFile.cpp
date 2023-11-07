@@ -1,7 +1,3 @@
-//
-// Created by justi on 26.08.2021.
-//
-
 #include "../../MessageMethods.h"
 #include "../../QueryGen/QueryGen.h"
 #include <curl/curl.h>
