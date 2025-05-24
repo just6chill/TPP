@@ -1,3 +1,5 @@
+//example of a Bot
+
 #include "T++/Framework.h"
 #include <iostream>
 #include <vector>
